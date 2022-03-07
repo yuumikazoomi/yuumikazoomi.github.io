@@ -2,6 +2,7 @@ body{
   background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
   touch-action: manipulation;
   height: 100vh;
+  overflow: hidden;
 }
 h1 {
  text-align: center;
@@ -48,6 +49,9 @@ h1 {
 }
 
 .second-row {
+  margin: 0.5rem 0;
+}
+.fourth-row{
   margin: 0.5rem 0;
 }
 

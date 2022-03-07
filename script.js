@@ -27,7 +27,7 @@ function initBoard() {
 
 function shadeKeyBoard(letter, color) {
     for (const elem of document.getElementsByClassName("keyboard-button")) {
-        if (elem.textContent === letter) {
+        if (elem.textContent === letter || letter===" " && elem.textContent==="Space") {
             let oldColor = elem.style.backgroundColor
             if (oldColor === "rgb(97,140,85)") {
                 return
@@ -76,7 +76,7 @@ function checkGuess () {
         let letterColor = ''
         let box = row.children[i]
         let letter = currentGuess[i]
-        
+        console.log(letter);
         let letterPosition = rightGuess.indexOf(currentGuess[i])
         // is letter in the correct guess
         if (letterPosition === -1) {
@@ -186,7 +186,7 @@ document.addEventListener("keyup", (e) => {
 
     
     
-    let found = pressedKey.match(/[a-z]/gi)
+    let found = pressedKey.match(/[a-z ]/gi)
     if (!found || found.length > 1) {
         return
     } else {
