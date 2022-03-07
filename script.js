@@ -163,7 +163,7 @@ document.addEventListener("keyup", (e) => {
     
     if(pressedKey === "Escape"){
         document.getElementById("myNav").style.height = "0%";
-        document.getElementById("game-frame").classList.remove("blur");
+        document.getElementById("game-frame").style.visibility = "visible";
     }
 
     if (guessesRemaining === 0) {

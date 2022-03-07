@@ -65,13 +65,13 @@
     <div id="myNav" class="overlay" >
         <!--<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>-->
         <div class="overlay-content">
-            <button class="keyboard-button" style="border-color:rgb(175, 175, 175); color: rgb(175, 175, 175);">Set Id</button>&emsp;
+            <button class="keyboard-button" style="border-color:rgb(200, 200, 200); color: rgb(200, 200, 200);">Set Id</button>&emsp;
             <input class="keyboard-button" placeholder="00000000-0000-0000-0000-000000000000" size="35" maxlength="36" style="background-color: rgb(225, 225, 225); color: rgb(50, 50, 50); cursor: inherit;">e
-            <p style="color: rgb(175, 175, 175);">stats for uuid: b4fb880b-d965-415b-84ad-effa56a9cdd3</p>
+            <p style="color: rgb(200, 200, 200);">stats for uuid: b4fb880b-d965-415b-84ad-effa56a9cdd3</p>
             <div onclick="closeNav()">
-                <p style="color: rgb(100, 100, 100);">Days attempted: 10</p>
-                <p style="color: rgb(100, 100, 100);">Days succeeded: 10</p>
-                <p style="color: rgb(100, 100, 100);">Tap or ESC to close</p>
+                <p style="color: rgb(150, 150, 150);">Days attempted: 10</p>
+                <p style="color: rgb(150, 150, 150);">Days succeeded: 10</p>
+                <p style="color: rgb(150, 150, 150);">Tap or ESC to close</p>
             </div>
         </div>
       </div>
@@ -84,12 +84,12 @@ crossorigin="anonymous"></script>
 <script>
     function openNav() {
       document.getElementById("myNav").style.height = "100%";
-      document.getElementById("game-frame").classList.add("blur");
+      document.getElementById("game-frame").style.visibility="hidden";
     }
     
     function closeNav() {
       document.getElementById("myNav").style.height = "0%";
-      document.getElementById("game-frame").classList.remove("blur");
+      document.getElementById("game-frame").style.visibility="visible";
     }
 
     </script>

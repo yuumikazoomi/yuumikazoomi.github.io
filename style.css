@@ -73,9 +73,9 @@ h1 {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: inherit;
   overflow-y: hidden;
   transition: 0.5s;
+  background-color: rgb(9, 17, 24);
 }
 
 .overlay-content {
@@ -154,10 +154,10 @@ a {
   }
 }
 .blur {
-  -webkit-filter: blur(2px);
-  -moz-filter: blur(2px);
-  -o-filter: blur(2px);
-  -ms-filter: blur(2px);
-  filter: blur(2px);
+  -webkit-filter: blur(0px);
+  -moz-filter: blur(0px);
+  -o-filter: blur(0px);
+  -ms-filter: blur(0px);
+  filter: blur(0px);
 
 }
