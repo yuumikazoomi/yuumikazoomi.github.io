@@ -1,6 +1,7 @@
 body{
-  background-color: rgb(33, 33, 33);
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
   touch-action: manipulation;
+  height: 100vh;
 }
 h1 {
  text-align: center;
