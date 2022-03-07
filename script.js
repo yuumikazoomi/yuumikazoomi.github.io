@@ -175,6 +175,7 @@ document.addEventListener("keyup", (e) => {
 
     if(pressedKey === "Escape"){
         document.getElementById("myNav").style.height = "0%";
+        document.getElementById("game-frame").classList.remove("blur");
     }
     
     let found = pressedKey.match(/[a-z]/gi)

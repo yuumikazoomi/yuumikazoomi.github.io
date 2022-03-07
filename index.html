@@ -14,52 +14,54 @@
 </head>
 <body>
     <h1> Yord-L </h1>
+    <div id="game-frame">
+        <div id="game-board">
+
+        </div>
     
-    <div id="game-board">
-
+        <div id="keyboard-cont">
+            <div class="first-row">
+                <button class="keyboard-button">q</button>
+                <button class="keyboard-button">w</button>
+                <button class="keyboard-button">e</button>
+                <button class="keyboard-button">r</button>
+                <button class="keyboard-button">t</button>
+                <button class="keyboard-button">y</button>
+                <button class="keyboard-button">u</button>
+                <button class="keyboard-button">i</button>
+                <button class="keyboard-button">o</button>
+                <button class="keyboard-button">p</button>
+            </div>
+            <div class="second-row">
+                <button class="keyboard-button">a</button>
+                <button class="keyboard-button">s</button>
+                <button class="keyboard-button">d</button>
+                <button class="keyboard-button">f</button>
+                <button class="keyboard-button">g</button>
+                <button class="keyboard-button">h</button>
+                <button class="keyboard-button">j</button>
+                <button class="keyboard-button">k</button>
+                <button class="keyboard-button">l</button>
+            </div>
+            <div class="third-row">
+                <button class="keyboard-button">Del</button>
+                <button class="keyboard-button">z</button>
+                <button class="keyboard-button">x</button>
+                <button class="keyboard-button">c</button>
+                <button class="keyboard-button">v</button>
+                <button class="keyboard-button">b</button>
+                <button class="keyboard-button">n</button>
+                <button class="keyboard-button">m</button>
+                <button class="keyboard-button">Enter</button>
+            </div>
+            <p style="color: rgb(100, 100, 100);">your uuid: b4fb880b-d965-415b-84ad-effa56a9cdd3</p>
+            <p style="color: rgb(100, 100, 100);">developer : @my_cat_is_not_cute &emsp; Version 1.1</p>
+            <p style="font-size:16px;cursor:pointer; color: rgb(200, 200, 200);" onclick="openNav()">&#9776; Stats</p>
+            
+            
+        </div>
     </div>
-
-    <div id="keyboard-cont">
-        <div class="first-row">
-            <button class="keyboard-button">q</button>
-            <button class="keyboard-button">w</button>
-            <button class="keyboard-button">e</button>
-            <button class="keyboard-button">r</button>
-            <button class="keyboard-button">t</button>
-            <button class="keyboard-button">y</button>
-            <button class="keyboard-button">u</button>
-            <button class="keyboard-button">i</button>
-            <button class="keyboard-button">o</button>
-            <button class="keyboard-button">p</button>
-        </div>
-        <div class="second-row">
-            <button class="keyboard-button">a</button>
-            <button class="keyboard-button">s</button>
-            <button class="keyboard-button">d</button>
-            <button class="keyboard-button">f</button>
-            <button class="keyboard-button">g</button>
-            <button class="keyboard-button">h</button>
-            <button class="keyboard-button">j</button>
-            <button class="keyboard-button">k</button>
-            <button class="keyboard-button">l</button>
-        </div>
-        <div class="third-row">
-            <button class="keyboard-button">Del</button>
-            <button class="keyboard-button">z</button>
-            <button class="keyboard-button">x</button>
-            <button class="keyboard-button">c</button>
-            <button class="keyboard-button">v</button>
-            <button class="keyboard-button">b</button>
-            <button class="keyboard-button">n</button>
-            <button class="keyboard-button">m</button>
-            <button class="keyboard-button">Enter</button>
-        </div>
-        <p style="color: rgb(100, 100, 100);">your uuid: b4fb880b-d965-415b-84ad-effa56a9cdd3</p>
-        <p style="color: rgb(100, 100, 100);">developer : @my_cat_is_not_cute &emsp; Version 1.1</p>
-        <p style="font-size:16px;cursor:pointer; color: rgb(200, 200, 200);" onclick="openNav()">&#9776; Stats</p>
-        
-        
-    </div>
+    
     <div id="myNav" class="overlay" >
         <!--<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>-->
         <div class="overlay-content">
@@ -82,10 +84,12 @@ crossorigin="anonymous"></script>
 <script>
     function openNav() {
       document.getElementById("myNav").style.height = "100%";
+      document.getElementById("game-frame").classList.add("blur");
     }
     
     function closeNav() {
       document.getElementById("myNav").style.height = "0%";
+      document.getElementById("game-frame").classList.remove("blur");
     }
 
     </script>
