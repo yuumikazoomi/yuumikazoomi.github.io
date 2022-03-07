@@ -1,11 +1,11 @@
 import { WORDS } from "./words.js";
 
-const NUMBER_OF_GUESSES = 5 ;
+const NUMBER_OF_GUESSES = 6 ;
 let guessesRemaining = NUMBER_OF_GUESSES;
 let currentGuess = [];
 let nextLetter = 0;
-let rightGuessString = WORDS[Math.floor(Math.random() * WORDS.length)]
-//let rightGuessString = "kaisa"
+//let rightGuessString = WORDS[Math.floor(Math.random() * WORDS.length)]
+let rightGuessString = "kaisa"
 console.log(rightGuessString)
 
 function initBoard() {
@@ -66,11 +66,12 @@ function checkGuess () {
         return
     }
 
+    /*
     if (!WORDS.includes(guessString)) {
         toastr.error("Word not in list!")
         return
     }
-   
+   */
     for (let i = 0; i < 5; i++) {
         let letterColor = ''
         let box = row.children[i]
@@ -173,12 +174,14 @@ document.addEventListener("keyup", (e) => {
         return
     }
 
+    
     let found = pressedKey.match(/[a-z]/gi)
     if (!found || found.length > 1) {
         return
     } else {
         insertLetter(pressedKey)
     }
+    
 })
 
 document.getElementById("keyboard-cont").addEventListener("click", (e) => {

@@ -56,7 +56,6 @@ h1 {
   margin: 0 2px;
   cursor: pointer;
   text-transform: uppercase;
-  color: rgb(216, 218,220);
+  color: rgb(175,175,175);
   background-color: rgb(33, 33, 33);
-  border: none;
-}
+  border: 1px solid black;
