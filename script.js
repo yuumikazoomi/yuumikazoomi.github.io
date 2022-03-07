@@ -156,7 +156,6 @@ const animateCSS = (element, animation, prefix = 'animate__') =>
 
     node.addEventListener('animationend', handleAnimationEnd, {once: true});
 });
-
 document.addEventListener("keyup", (e) => {
 
     if (guessesRemaining === 0) {
@@ -174,6 +173,9 @@ document.addEventListener("keyup", (e) => {
         return
     }
 
+    if(pressedKey === "Escape"){
+        document.getElementById("myNav").style.height = "0%";
+    }
     
     let found = pressedKey.match(/[a-z]/gi)
     if (!found || found.length > 1) {
