@@ -69,7 +69,7 @@ class App {
   }
 
   getTodayAnswer () {
-    return 'WORLD'
+    return 'YORDL'
   }
 
   handleBackspace () {
@@ -98,15 +98,14 @@ class App {
     
     this.setState({ ...this.state, isLoading: true })
     const json = await getWordFromNaver(inputWords[y])
-    //const json = {};
     this.setState({ ...this.state, isLoading: false })
 
     if (
       json.items[0].length === 0 ||
       json.items[0][0][0][0].toUpperCase() !== inputWords[y]
     ) {
-      window.alert(`${inputWords[y]}는 단어가 아닙니다!`)
-      return
+      //window.alert(`${inputWords[y]}는 단어가 아닙니다!`)
+      //return
     }
 
     [...inputWords[y]].forEach((alphabet, idx) => {
