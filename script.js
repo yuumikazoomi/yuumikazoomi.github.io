@@ -80,7 +80,7 @@ function checkGuess () {
         let letterPosition = rightGuess.indexOf(currentGuess[i])
         // is letter in the correct guess
         if (letterPosition === -1) {
-            //letterColor = "rgb(58,58,60)";
+            letterColor = "rgb(150,150,150)";
         } else {
             // now, letter is definitely in word
             // if letter index and right guess index are the same
