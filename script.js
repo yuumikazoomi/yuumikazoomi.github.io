@@ -158,11 +158,22 @@ const animateCSS = (element, animation, prefix = 'animate__') =>
 });
 document.addEventListener("keyup", (e) => {
 
+    
+    let pressedKey = String(e.key)
+    
+    if(pressedKey === "Escape"){
+        document.getElementById("myNav").style.height = "0%";
+        document.getElementById("game-frame").classList.remove("blur");
+    }
+
     if (guessesRemaining === 0) {
         return
     }
 
-    let pressedKey = String(e.key)
+
+    if(document.getElementById("myNav").style.height==="100%"){
+        return;
+    }
     if (pressedKey === "Backspace" && nextLetter !== 0) {
         deleteLetter()
         return
@@ -173,10 +184,7 @@ document.addEventListener("keyup", (e) => {
         return
     }
 
-    if(pressedKey === "Escape"){
-        document.getElementById("myNav").style.height = "0%";
-        document.getElementById("game-frame").classList.remove("blur");
-    }
+    
     
     let found = pressedKey.match(/[a-z]/gi)
     if (!found || found.length > 1) {
