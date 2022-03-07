@@ -25,6 +25,7 @@ h1 {
   justify-content: center;
   align-items: center;
   text-transform: uppercase;
+  color: rgb(100, 100, 100);
 }
 
 .filled-box {
@@ -59,7 +60,8 @@ h1 {
   text-transform: uppercase;
   background-color: inherit;;
   border: 1px solid black;
-  color: rgb(175, 175, 175);
+  border-color: rgb(175, 175, 175);
+  color: rgb(100, 100, 100);
 }
 .keyboard-button-disabled{
   color: rgb(100, 100, 100);
