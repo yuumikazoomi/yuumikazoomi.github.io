@@ -6,6 +6,7 @@ let currentGuess = [];
 let nextLetter = 0;
 //let rightGuessString = WORDS[Math.floor(Math.random() * WORDS.length)]
 let rightGuessString = "kaisa"
+//
 console.log(rightGuessString)
 
 function initBoard() {
