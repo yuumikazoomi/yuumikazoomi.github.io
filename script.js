@@ -206,6 +206,9 @@ document.getElementById("keyboard-cont").addEventListener("click", (e) => {
     if (key === "Del") {
         key = "Backspace"
     } 
+    if(key === "Space"){
+        key = " ";
+    }
 
     document.dispatchEvent(new KeyboardEvent("keyup", {'key': key}))
 })
