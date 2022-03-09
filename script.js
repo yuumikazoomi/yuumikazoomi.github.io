@@ -25,7 +25,17 @@ function initBoard() {
         board.appendChild(row)
     }
     net = new Network((e)=>{
-
+        let packet = JSON.parse(e);
+        switch(packet.pid){
+            case 0:
+                break;
+                case 1:
+                    localStorage.setItem('uid',packets.myuuid);
+                    console.log(packet.myuuid);
+                    break;
+                    case 2:
+                        break;
+        }
     });
 }
 
