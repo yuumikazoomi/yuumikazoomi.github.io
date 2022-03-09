@@ -1,5 +1,5 @@
 body{
-  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  background-color: rgb(33, 33, 33);
   touch-action: manipulation;
   height: 100vh;
   overflow: hidden;
@@ -26,7 +26,7 @@ h1 {
   justify-content: center;
   align-items: center;
   text-transform: uppercase;
-  color: rgb(100, 100, 100);
+  color: rgb(200, 200, 200);
 }
 
 .filled-box {
@@ -62,10 +62,10 @@ h1 {
   margin: 0 2px;
   cursor: pointer;
   text-transform: uppercase;
-  background-color: inherit;;
+  background-color: rgb(5, 5, 5);
   border: 1px solid black;
-  border-color: rgb(175, 175, 175);
-  color: rgb(100, 100, 100);
+  border-color: rgb(150, 150, 150);
+  color: rgb(200, 200, 200);
 }
 .keyboard-button-disabled{
   color: rgb(100, 100, 100);
@@ -73,13 +73,14 @@ h1 {
 .overlay {
   height: 0%;
   width: 100%;
+  bottom: 0%;
   position: fixed;
   z-index: 1;
   top: 0;
   left: 0;
   overflow-y: hidden;
-  transition: 0.5s;
-  background-color: rgb(9, 17, 24);
+  transition: 1.0s;
+  background-color: inherit;
 }
 
 .overlay-content {

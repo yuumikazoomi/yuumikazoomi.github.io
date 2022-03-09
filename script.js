@@ -81,7 +81,7 @@ function checkGuess () {
         let letterPosition = rightGuess.indexOf(currentGuess[i])
         // is letter in the correct guess
         if (letterPosition === -1) {
-            letterColor = "rgb(175,175,175)";
+            letterColor = "rgb(25,25,25)";
         } else {
             // now, letter is definitely in word
             // if letter index and right guess index are the same
@@ -102,7 +102,10 @@ function checkGuess () {
             //flip box
             animateCSS(box, 'flipInX')
             //shade box
-            box.style.backgroundColor = letterColor
+            box.style.backgroundColor = letterColor;
+            if(letterColor==="rgb(25,25,25)"){
+                letterColor="rgb(40,40,40)";
+            }
             shadeKeyBoard(letter, letterColor)
         }, delay)
     }
@@ -164,7 +167,6 @@ document.addEventListener("keyup", (e) => {
     
     if(pressedKey === "Escape"){
         document.getElementById("myNav").style.height = "0%";
-        document.getElementById("game-frame").style.visibility = "visible";
     }
 
     if (guessesRemaining === 0) {
