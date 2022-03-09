@@ -8,7 +8,7 @@ let nextLetter = 0;
 let rightGuessString = "kaisa"
 //
 console.log(rightGuessString)
-
+var net = null;
 function initBoard() {
     let board = document.getElementById("game-board");
 
@@ -24,6 +24,9 @@ function initBoard() {
 
         board.appendChild(row)
     }
+    net = new Network((e)=>{
+
+    });
 }
 
 function shadeKeyBoard(letter, color) {
@@ -73,6 +76,10 @@ function checkGuess () {
         return
     }
    */
+
+    ////THIS SHOULD BE HANDLED BY THE SERVER
+    ////ASIDE FROM SETTING THE KEY LETTERS
+
     for (let i = 0; i < 5; i++) {
         let letterColor = ''
         let box = row.children[i]
@@ -181,12 +188,6 @@ document.addEventListener("keyup", (e) => {
         deleteLetter()
         return
     }
-
-    if (pressedKey === "Enter") {
-        checkGuess()
-        return
-    }
-
     
     
     let found = pressedKey.match(/[a-z ]/gi)
@@ -194,6 +195,13 @@ document.addEventListener("keyup", (e) => {
         return
     } else {
         insertLetter(pressedKey)
+    }
+    if (pressedKey === "Enter") {
+        //checkGuess()
+        if(net!=null){
+            // net.send({pid:2,guess:})
+        }
+        return
     }
     
 })
