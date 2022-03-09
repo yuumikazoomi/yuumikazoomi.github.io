@@ -1,26 +1,34 @@
 class Network{
     constructor(callback){
         this.callback = callback;
-        this.ws = new WebSocket("ws://8.168.115.193:8090");
+        this.ws = new WebSocket("ws://localhost:8080");
         this.ws.onmessage = function (evt) {
             var received_msg = evt.data;
             callback(received_msg);
           };
           this.ws.onopen = function(evt){
+              console.log('sending uuid');
             if(localStorage.hasOwnProperty('uid')){
                 //key exists, check if it's null
                 let selfuid = localStorage.getItem('uid');
                 if(selfuid=="null" || selfuid == "undefined"){
-                    this.send({pid:1,myuuid:"null"});
+                    this.send(JSON.stringify({pid:1,myuuid:"null"}));
+                    console.log('uuid does not exist');
                 }else{
-                    this.send({pid:1,myuuid:selfuid});
+                    this.send(JSON.stringify({pid:1,myuuid:selfuid}));
+                    console.log('found uuid:'+selfuid);
                 }
             }else{
-                this.send({pid:1,myuuid:"null"});
+                this.send(JSON.stringify({pid:1,myuuid:"null"}));
+                console.log('uuid does not exist');
+                
             }
           }
     }
-    send(packet){
-        this.ws,this.send(JSON.stringify(packet));
+    sendwrapper(packet){
+        let p = JSON.stringify(packet);
+        console.log(packet);
+        console.log(p);
+        this.ws.send(p);
     }
 }

@@ -30,7 +30,7 @@ function initBoard() {
             case 0:
                 break;
                 case 1:
-                    localStorage.setItem('uid',packets.myuuid);
+                    localStorage.setItem('uid',packet.myuuid);
                     console.log(packet.myuuid);
                     break;
                     case 2:
