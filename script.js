@@ -11,9 +11,8 @@ console.log(rightGuessString)
 var net = null;
 function displaystatsforid(uid){
     document.getElementById("statsforid1").innerText="stats for uuid: "+uid;
-    document.getElementById("statsforid2").innerText="days attempted: 10";
-    document.getElementById("statsforid3").innerText="days succeeded: 10";
-    document.getElementById("statsforid4").innerText="current streak: 10";
+    document.getElementById("statsforid2").innerText="score: 10";
+    document.getElementById("statsforid3").innerText="current streak: 10";
     document.getElementById("statsforid4").innerText="max streak: 10";
 }
 function initBoard() {
