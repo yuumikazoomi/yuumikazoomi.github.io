@@ -1,4 +1,4 @@
-import { WORDS } from "./words.js";
+
 
 const NUMBER_OF_GUESSES = 6 ;
 let guessesRemaining = NUMBER_OF_GUESSES;
@@ -9,6 +9,13 @@ let rightGuessString = "kaisa"
 //
 console.log(rightGuessString)
 var net = null;
+function displaystatsforid(uid){
+    document.getElementById("statsforid1").innerText="stats for uuid: "+uid;
+    document.getElementById("statsforid2").innerText="days attempted: 10";
+    document.getElementById("statsforid3").innerText="days succeeded: 10";
+    document.getElementById("statsforid4").innerText="current streak: 10";
+    document.getElementById("statsforid4").innerText="max streak: 10";
+}
 function initBoard() {
     let board = document.getElementById("game-board");
 

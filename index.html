@@ -68,13 +68,15 @@
     <div id="myNav" class="overlay"  >
         <!--<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>-->
         <div class="overlay-content">
-            <p style="color: rgb(100, 100, 100);">your uuid: b4fb880b-d965-415b-84ad-effa56a9cdd3</p>
-            <button class="keyboard-button" style="border-color:rgb(200, 200, 200); color: rgb(200, 200, 200);">Set Id</button>&emsp;
-            <input class="keyboard-button" placeholder="00000000-0000-0000-0000-000000000000" size="35" maxlength="36" style="background-color: rgb(225, 225, 225); color: rgb(50, 50, 50); cursor: inherit;">e
-            <p style="color: rgb(200, 200, 200);">stats for uuid: b4fb880b-d965-415b-84ad-effa56a9cdd3</p>
+
+            <p id="displaymyid" style="color: rgb(100, 100, 100);"></p>
+            <input id="inputforid" oninput="inputchange()" class="keyboard-button" placeholder="Paste to see stats for another id" size="32" maxlength="32" style="background-color: rgb(225, 225, 225); color: rgb(50, 50, 50); cursor: inherit;">
+            <p id="statsforid1" style="color: rgb(200, 200, 200);"></p>
             <div onclick="closeNav()">
-                <p style="color: rgb(150, 150, 150);">Days attempted: 10</p>
-                <p style="color: rgb(150, 150, 150);">Days succeeded: 10</p>
+                <p id="statsforid2" style="color: rgb(150, 150, 150);"></p>
+                <p id="statsforid3" style="color: rgb(150, 150, 150);"></p>
+                <p id="statsforid4" style="color: rgb(150, 150, 150);"></p>
+                <p id="statsforid5" style="color: rgb(150, 150, 150);"></p>
                 <p style="color: rgb(150, 150, 150);">Tap or ESC to close</p>
             </div>
         </div>
@@ -85,16 +87,31 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="network.js" ></script>
-<script src="script.js" type="module"></script>
+<script src="script.js" ></script>
 <script>
     function openNav() {
       document.getElementById("myNav").style.height = "100%";
-
+      let uid = "ffffffffffffffffffffffffffffffff";
+      if(localStorage.hasOwnProperty("uid")){
+          uid = localStorage.getItem('uid');
+      }
+      document.getElementById("displaymyid").textContent="your uuid: "+uid;
+    
+      displaystatsforid(uid);
     }
     
     function closeNav() {
-      
+        document.getElementById("myNav").style.height = "0%";
     }
+    function inputchange(){
+        let uid = "ffffffffffffffffffffffffffffffff";
+        let e = document.getElementById("inputforid");
+        if(e.value.length==16){
+            
+        }
+
+    }
+    
 
     </script>
 </body>
