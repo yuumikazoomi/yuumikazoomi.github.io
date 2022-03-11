@@ -36,8 +36,8 @@ function initBoard() {
             case 0:
                 break;
                 case 1:
-                    localStorage.setItem('uid',packet.myuuid);
-                    console.log(packet.myuuid);
+                    localStorage.setItem('uid-private',packet.uidprivate);
+                    localStorage.setItem('uid-public',packet.uidpublic);
                     break;
                     case 2:
                         break;

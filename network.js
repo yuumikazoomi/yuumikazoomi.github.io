@@ -7,28 +7,28 @@ class Network{
             callback(received_msg);
           };
           this.ws.onopen = function(evt){
-              console.log('sending uuid');
-            if(localStorage.hasOwnProperty('uid')){
+            if(localStorage.hasOwnProperty('uid-private')){
                 //key exists, check if it's null
-                let selfuid = localStorage.getItem('uid');
+                let selfuid = localStorage.getItem('uid-private');
                 if(selfuid=="null" || selfuid == "undefined"){
-                    this.send(JSON.stringify({pid:1,myuuid:"null"}));
+                    this.send(JSON.stringify({pid:1,uidprivate:"null"}));
                     console.log('uuid does not exist');
                 }else{
-                    this.send(JSON.stringify({pid:1,myuuid:selfuid}));
+                    this.send(JSON.stringify({pid:1,uidprivate:selfuid}));
                     console.log('found uuid:'+selfuid);
                 }
             }else{
-                this.send(JSON.stringify({pid:1,myuuid:"null"}));
+                this.send(JSON.stringify({pid:1,uidprivate:"null"}));
                 console.log('uuid does not exist');
                 
             }
           }
+          const style = 'color:red; font-size:30px; font-weight: bold; -webkit-text-stroke: 1px black; background-color: black;'
+            console.log("%c DO NOT SHARE THE PRIVATE UID THAT IS ONLY FOR YOU", style);
+            console.log("%c PRIVATE UID IS FOUND IN STORAGE", style);
     }
     sendwrapper(packet){
         let p = JSON.stringify(packet);
-        console.log(packet);
-        console.log(p);
         this.ws.send(p);
     }
 }
