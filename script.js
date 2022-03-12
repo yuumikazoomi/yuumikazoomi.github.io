@@ -1,14 +1,36 @@
 
 
-const NUMBER_OF_GUESSES = 6 ;
-let guessesRemaining = NUMBER_OF_GUESSES;
+let numberofguesses = 0;
+var guessesRemaining = numberofguesses;
+var wordlength = 0;
 let currentGuess = [];
 let nextLetter = 0;
-//let rightGuessString = WORDS[Math.floor(Math.random() * WORDS.length)]
-let rightGuessString = "kaisa"
-//
-console.log(rightGuessString)
 var net = null;
+net = new Network((e)=>{
+    let packet = JSON.parse(e);
+    switch(packet.pid){
+        case 0:
+            break;
+            case 1:
+                localStorage.setItem('uid-private',packet.uidprivate);
+                localStorage.setItem('uid-public',packet.uidpublic);
+                break;
+                case 2:{
+
+                }
+                    break;
+                    case 3:{
+
+                    }
+                        break;
+                        case 4:{
+                            numberofguesses = packet.rows;
+                            wordlength = packet.length;
+                            initBoard();
+                        }
+                        break;
+    }
+});
 function displaystatsforid(uid){
     document.getElementById("statsforid1").innerText="stats for uuid: "+uid;
     document.getElementById("statsforid2").innerText="score: 10";
@@ -18,11 +40,11 @@ function displaystatsforid(uid){
 function initBoard() {
     let board = document.getElementById("game-board");
 
-    for (let i = 0; i < NUMBER_OF_GUESSES; i++) {
+    for (let i = 0; i < numberofguesses; i++) {
         let row = document.createElement("div")
         row.className = "letter-row"
         
-        for (let j = 0; j < 5; j++) {
+        for (let j = 0; j < wordlength; j++) {
             let box = document.createElement("div")
             box.className = "letter-box"
             row.appendChild(box)
@@ -30,19 +52,7 @@ function initBoard() {
 
         board.appendChild(row)
     }
-    net = new Network((e)=>{
-        let packet = JSON.parse(e);
-        switch(packet.pid){
-            case 0:
-                break;
-                case 1:
-                    localStorage.setItem('uid-private',packet.uidprivate);
-                    localStorage.setItem('uid-public',packet.uidpublic);
-                    break;
-                    case 2:
-                        break;
-        }
-    });
+    
 }
 
 function shadeKeyBoard(letter, color) {
@@ -64,7 +74,7 @@ function shadeKeyBoard(letter, color) {
 }
 
 function deleteLetter () {
-    let row = document.getElementsByClassName("letter-row")[NUMBER_OF_GUESSES - guessesRemaining]
+    let row = document.getElementsByClassName("letter-row")[numberofguesses - guessesRemaining]
     let box = row.children[nextLetter - 1]
     box.textContent = ""
     box.classList.remove("filled-box")
@@ -73,7 +83,7 @@ function deleteLetter () {
 }
 
 function checkGuess () {
-    let row = document.getElementsByClassName("letter-row")[NUMBER_OF_GUESSES - guessesRemaining]
+    let row = document.getElementsByClassName("letter-row")[numberofguesses - guessesRemaining]
     let guessString = ''
     let rightGuess = Array.from(rightGuessString)
 
@@ -81,7 +91,7 @@ function checkGuess () {
         guessString += val
     }
 
-    if (guessString.length != 5) {
+    if (guessString.length != wordlength) {
         toastr.error("Not enough letters!")
         return
     }
@@ -96,7 +106,7 @@ function checkGuess () {
     ////THIS SHOULD BE HANDLED BY THE SERVER
     ////ASIDE FROM SETTING THE KEY LETTERS
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < wordlength; i++) {
         let letterColor = ''
         let box = row.children[i]
         let letter = currentGuess[i]
@@ -150,12 +160,12 @@ function checkGuess () {
 }
 
 function insertLetter (pressedKey) {
-    if (nextLetter === 5) {
+    if (nextLetter === wordlength) {
         return
     }
     pressedKey = pressedKey.toLowerCase()
 
-    let row = document.getElementsByClassName("letter-row")[NUMBER_OF_GUESSES - guessesRemaining]
+    let row = document.getElementsByClassName("letter-row")[numberofguesses - guessesRemaining]
     let box = row.children[nextLetter]
     animateCSS(box, "pulse")
     box.textContent = pressedKey
@@ -240,4 +250,4 @@ document.getElementById("keyboard-cont").addEventListener("click", (e) => {
     document.dispatchEvent(new KeyboardEvent("keyup", {'key': key}))
 })
 
-initBoard();
+//initBoard();
