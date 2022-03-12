@@ -25,7 +25,6 @@ class Network{
           }
           const style = 'color:red; font-size:30px; font-weight: bold; -webkit-text-stroke: 1px black; background-color: black;'
             console.log("%c DO NOT SHARE THE PRIVATE UID THAT IS ONLY FOR YOU", style);
-            console.log("%c PRIVATE UID IS FOUND IN STORAGE", style);
     }
     sendwrapper(packet){
         let p = JSON.stringify(packet);
