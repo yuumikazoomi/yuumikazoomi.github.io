@@ -12,14 +12,11 @@ class Network{
                 let selfuid = localStorage.getItem('uid-private');
                 if(selfuid=="null" || selfuid == "undefined"){
                     this.send(JSON.stringify({pid:1,uidprivate:"null"}));
-                    console.log('uuid does not exist');
                 }else{
                     this.send(JSON.stringify({pid:1,uidprivate:selfuid}));
-                    console.log('found uuid:'+selfuid);
                 }
             }else{
                 this.send(JSON.stringify({pid:1,uidprivate:"null"}));
-                console.log('uuid does not exist');
                 
             }
           }
