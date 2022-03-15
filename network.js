@@ -20,7 +20,7 @@ class Network{
                 
             }
           }
-          const style = 'color:red; font-size:30px; font-weight: bold; -webkit-text-stroke: 1px black; background-color: black;'
+          const style = 'color:red; font-size:7.5rem; font-weight: bold; -webkit-text-stroke: 1px black; ;'
             console.log("%c DO NOT SHARE THE PRIVATE UID THAT IS ONLY FOR YOU", style);
     }
     sendwrapper(packet){

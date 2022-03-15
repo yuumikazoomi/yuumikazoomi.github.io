@@ -1,11 +1,12 @@
 
 
-let numberofguesses = 0;
+var numberofguesses = 0
 var guessesRemaining = numberofguesses;
 var wordlength = 0;
 let currentGuess = [];
 let nextLetter = 0;
 var net = null;
+
 net = new Network((e)=>{
     let packet = JSON.parse(e);
     switch(packet.pid){
@@ -26,6 +27,9 @@ net = new Network((e)=>{
                         case 4:{
                             numberofguesses = packet.rows;
                             wordlength = packet.length;
+                            guessesRemaining = numberofguesses;
+                            //console.log(numberofguesses);
+                            //console.log(wordlength);
                             initBoard();
                         }
                         break;
@@ -39,7 +43,6 @@ function displaystatsforid(uid){
 }
 function initBoard() {
     let board = document.getElementById("game-board");
-
     for (let i = 0; i < numberofguesses; i++) {
         let row = document.createElement("div")
         row.className = "letter-row"
@@ -92,7 +95,8 @@ function checkGuess () {
     }
 
     if (guessString.length != wordlength) {
-        toastr.error("Not enough letters!")
+        //toastr.error("Not enough letters!")
+        alert("not enough letters");
         return
     }
 
@@ -144,7 +148,8 @@ function checkGuess () {
     }
 
     if (guessString === rightGuessString) {
-        toastr.success("You guessed right! Game over!")
+        //toastr.success("You guessed right! Game over!")
+        alert("You guessed it correct!");
         guessesRemaining = 0
         return
     } else {
@@ -153,8 +158,11 @@ function checkGuess () {
         nextLetter = 0;
 
         if (guessesRemaining === 0) {
+            /*
             toastr.error("You've run out of guesses! Game over!")
             toastr.info(`The right word was: "${rightGuessString}"`)
+            */
+           alert("You ran out of guesses!");
         }
     }
 }

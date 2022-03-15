@@ -2,7 +2,6 @@ body{
   background-color: rgb(33, 33, 33);
   touch-action: manipulation;
   height: 100vh;
-  overflow: hidden;
 }
 h1 {
  text-align: center;
