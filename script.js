@@ -18,9 +18,9 @@ net = new Network((e)=>{
                 break;
                 case 2:{
                     if(!packet.valid){
-
+                        //notify to the user the word doesn't exist
                     }else{
-
+                        displayresult(packet.result);
                         guessesRemaining -= 1;
                         currentGuess = [];
                         nextLetter = 0;
@@ -42,6 +42,8 @@ net = new Network((e)=>{
                         break;
     }
 });
+
+
 function displaystatsforid(uid){
     document.getElementById("statsforid1").innerText="stats for uuid: "+uid;
     document.getElementById("statsforid2").innerText="score: 10";
@@ -94,61 +96,36 @@ function deleteLetter () {
     }
     
 }
-
-function checkGuess () {
+function displayresult(result){
     let row = document.getElementsByClassName("letter-row")[numberofguesses - guessesRemaining]
-    let guessString = ''
-    let rightGuess = Array.from(rightGuessString)
+    
 
-    for (const val of currentGuess) {
-        guessString += val
-    }
-
-    if (guessString.length != wordlength) {
-        //toastr.error("Not enough letters!")
-        alert("not enough letters");
-        return
-    }
-
-    /*
-    if (!WORDS.includes(guessString)) {
-        toastr.error("Word not in list!")
-        return
-    }
-   */
-
-    ////THIS SHOULD BE HANDLED BY THE SERVER
-    ////ASIDE FROM SETTING THE KEY LETTERS
-
-    for (let i = 0; i < wordlength; i++) {
-        let letterColor = ''
-        let box = row.children[i]
-        let letter = currentGuess[i]
-        console.log(letter);
-        let letterPosition = rightGuess.indexOf(currentGuess[i])
-        // is letter in the correct guess
-        if (letterPosition === -1) {
+    let high = result>>16&0xFFFF;
+    let low = (result &0xFFFF);
+    console.log(high+":"+low);
+    for(let i = 0; i < currentGuess.length;++i){
+        let letterColor = '';
+        let box = row.children[i];
+        let letter = currentGuess[i];
+        if(high>>i&1){
+            console.log("correct");
+            letterColor = "rgb(97,140,85)";
+            //correct
+        }else if(low>>i&1){
+            console.log("acceptable");
+            letterColor = "rgb(177,160,76)";
+            //acceptable
+        }else{
+            console.log("bad");
             letterColor = "rgb(25,25,25)";
-        } else {
-            // now, letter is definitely in word
-            // if letter index and right guess index are the same
-            // letter is in the right position 
-            if (currentGuess[i] === rightGuess[i]) {
-                // shade green 
-                letterColor = "rgb(97,140,85)";
-            } else {
-                // shade box yellow
-                letterColor = "rgb(177,160,76)";
-            }
-
-            rightGuess[letterPosition] = "#"
+            //totally wrong
         }
-
         let delay = 250 * i
         setTimeout(()=> {
             //flip box
             animateCSS(box, 'flipInX')
             //shade box
+            console.log(letterColor);
             box.style.backgroundColor = letterColor;
             if(letterColor==="rgb(25,25,25)"){
                 letterColor="rgb(40,40,40)";
@@ -156,7 +133,41 @@ function checkGuess () {
             shadeKeyBoard(letter, letterColor)
         }, delay)
     }
+}
+function checkGuess () {
+    
 
+
+    ////THIS SHOULD BE HANDLED BY THE SERVER
+    ////ASIDE FROM SETTING THE KEY LETTERS
+/*
+    for (let i = 0; i < wordlength; i++) {
+        let letterColor = ''
+        
+        let letter = currentGuess[i]
+        console.log(letter);
+        let letterPosition = rightGuess.indexOf(currentGuess[i])
+        // is letter in the correct guess
+        if (letterPosition === -1) {
+            letterColor = 
+        } else {
+            // now, letter is definitely in word
+            // if letter index and right guess index are the same
+            // letter is in the right position 
+            if (currentGuess[i] === rightGuess[i]) {
+                // shade green 
+                
+            } else {
+                // shade box yellow
+                
+            }
+
+            rightGuess[letterPosition] = "#"
+        }
+
+        
+    }
+*/
     if (guessString === rightGuessString) {
         //toastr.success("You guessed right! Game over!")
         alert("You guessed it correct!");
