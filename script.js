@@ -17,7 +17,14 @@ net = new Network((e)=>{
                 localStorage.setItem('uid-public',packet.uidpublic);
                 break;
                 case 2:{
+                    if(!packet.valid){
 
+                    }else{
+
+                        guessesRemaining -= 1;
+                        currentGuess = [];
+                        nextLetter = 0;
+                    }
                 }
                     break;
                     case 3:{
@@ -77,12 +84,15 @@ function shadeKeyBoard(letter, color) {
 }
 
 function deleteLetter () {
-    let row = document.getElementsByClassName("letter-row")[numberofguesses - guessesRemaining]
-    let box = row.children[nextLetter - 1]
-    box.textContent = ""
-    box.classList.remove("filled-box")
-    currentGuess.pop()
-    nextLetter -= 1
+    if(currentGuess.length>0){
+        let row = document.getElementsByClassName("letter-row")[numberofguesses - guessesRemaining]
+        let box = row.children[nextLetter - 1]
+        box.textContent = ""
+        box.classList.remove("filled-box")
+        currentGuess.pop()
+        nextLetter -= 1
+    }
+    
 }
 
 function checkGuess () {
@@ -171,8 +181,8 @@ function insertLetter (pressedKey) {
     if (nextLetter === wordlength) {
         return
     }
-    pressedKey = pressedKey.toLowerCase()
-
+    pressedKey = pressedKey.toUpperCase();
+    
     let row = document.getElementsByClassName("letter-row")[numberofguesses - guessesRemaining]
     let box = row.children[nextLetter]
     animateCSS(box, "pulse")
@@ -218,25 +228,29 @@ document.addEventListener("keyup", (e) => {
     if(document.getElementById("myNav").style.height==="100%"){
         return;
     }
-    if (pressedKey === "Backspace" && nextLetter !== 0) {
-        deleteLetter()
+    if(pressedKey === "Backspace"){
+        if(nextLetter!==0){
+            deleteLetter();
+        }
         return
     }
-    
-    
+    if (pressedKey === "Enter") {
+        //checkGuess()
+        if(net!=null){
+            console.log("sending");
+            console.log(currentGuess);
+             net.sendwrapper({pid:2,guess:currentGuess.join('')});
+        }
+        return
+    }
     let found = pressedKey.match(/[a-z ]/gi)
     if (!found || found.length > 1) {
         return
     } else {
         insertLetter(pressedKey)
     }
-    if (pressedKey === "Enter") {
-        //checkGuess()
-        if(net!=null){
-            // net.send({pid:2,guess:})
-        }
-        return
-    }
+    
+    
     
 })
 

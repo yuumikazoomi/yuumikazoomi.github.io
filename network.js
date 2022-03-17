@@ -21,7 +21,7 @@ class Network{
             }
           }
           const style = 'color:red; font-size:7.5rem; font-weight: bold; -webkit-text-stroke: 1px black; ;'
-            console.log("%c DO NOT SHARE THE PRIVATE UID THAT IS ONLY FOR YOU", style);
+           // console.log("%c DO NOT SHARE THE PRIVATE UID THAT IS ONLY FOR YOU", style);
     }
     sendwrapper(packet){
         let p = JSON.stringify(packet);
