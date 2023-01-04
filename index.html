@@ -1,115 +1,156 @@
+<!--
+  Protocol revision 5.21
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <link rel="icon" type="image/x-icon" href="favicon.ico"> 
-    <title>Yordl</title>
-    <link rel="stylesheet" href="style.css">
-    <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name=apple-mobile-web-app-capable content=yes>
+  <meta name=apple-mobile-web-app-status-bar-style content=black>
+  <link rel="stylesheet" href="style.css?5">
+  <script src="./app.js" defer></script>
+  <script src="packets.js?5"></script>
+  <script src="connection.js?9"></script>
+  <script src="tile.js?5"></script>
+  <script src="gameboard.js?5"></script>
+  <script src="packethandler.js?24"></script>
+  <script   src="https://code.jquery.com/jquery-3.6.0.min.js"   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="   crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+  <title>Sweeper.io</title>
 </head>
 <body>
-    <h1 style="color: rgb(200,200,200);"> Yordl </h1>
-    <div id="game-frame">
-        <div id="game-board">
-
-        </div>
-    
-        <div id="keyboard-cont">
-            <div class="first-row">
-                <button class="keyboard-button">q</button>
-                <button class="keyboard-button">w</button>
-                <button class="keyboard-button">e</button>
-                <button class="keyboard-button">r</button>
-                <button class="keyboard-button">t</button>
-                <button class="keyboard-button">y</button>
-                <button class="keyboard-button">u</button>
-                <button class="keyboard-button">i</button>
-                <button class="keyboard-button">o</button>
-                <button class="keyboard-button">p</button>
-            </div>
-            <div class="second-row">
-                <button class="keyboard-button">a</button>
-                <button class="keyboard-button">s</button>
-                <button class="keyboard-button">d</button>
-                <button class="keyboard-button">f</button>
-                <button class="keyboard-button">g</button>
-                <button class="keyboard-button">h</button>
-                <button class="keyboard-button">j</button>
-                <button class="keyboard-button">k</button>
-                <button class="keyboard-button">l</button>
-            </div>
-            <div class="third-row">
-                <button class="keyboard-button">Del</button>
-                <button class="keyboard-button">z</button>
-                <button class="keyboard-button">x</button>
-                <button class="keyboard-button">c</button>
-                <button class="keyboard-button">v</button>
-                <button class="keyboard-button">b</button>
-                <button class="keyboard-button">n</button>
-                <button class="keyboard-button">m</button>
-                <button class="keyboard-button">Enter</button>
-            </div>
-            <div class="fourth-row">
-                <button class="keyboard-button">Space</button>
-            </div>
-            <p style="color: rgb(100, 100, 100);">developer : @OneUglyCat &emsp; Version 1.1</p>
-            <p style="font-size:16px;cursor:pointer; color: rgb(200, 200, 200);" onclick="openNav()">&#9776; Stats</p>
-            
-            
-        </div>
+  <div class="container">
+    <div class="heading">
+      <h1>Sweeper.io</h1>
+      <button><img src="./assets/settings.svg" alt="settings"></button>
     </div>
-    
-    <div id="myNav" class="overlay"  >
-        <!--<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>-->
-        <div class="overlay-content">
+    <div class="game-view">
+      <div class="main-game">
+        <div class="game-status">
+          <div class="time info">
+            <img src="./assets/clock.svg" alt="Clock">
+            <p>00:00</p> <!--  time left goes here -->
+          </div>
+          <div class="turn">
+            <p>Turn :</p>
+            <h4 id="player-turn">YOU</h4> <!--  turn goes here -->
+          </div>
+          <div class="bombs info">
+            <img src="./assets/bomb.svg" alt="bomb">
+            <p id="mine-count">0</p> <!--  Number of bombs left goes here -->
+          </div>
+        </div>
+        <div class="grid">
+          <!--
 
-            <p id="displaymyid" style="color: rgb(100, 100, 100);"></p>
-            <input id="inputforid" oninput="inputchange()" class="keyboard-button" placeholder="Paste to see stats for another id" size="32" maxlength="32" style="background-color: rgb(225, 225, 225); color: rgb(50, 50, 50); cursor: inherit;">
-            <p id="statsforid1" style="color: rgb(200, 200, 200);"></p>
-            <div onclick="closeNav()">
-                <p id="statsforid2" style="color: rgb(150, 150, 150);"></p>
-                <p id="statsforid3" style="color: rgb(150, 150, 150);"></p>
-                <p id="statsforid4" style="color: rgb(150, 150, 150);"></p>
-                <p style="color: rgb(150, 150, 150);">Tap or ESC to close</p>
+<div Y="1" class="row">
+            <button class="cell not-empty" x="1"><img src="assets/flagblue.png" alt=""></button><button class="cell" x="2"></button><button class="cell" x="3"></button><button class="cell" x="4"></button><button class="cell" x="5"></button><button class="cell" x="6"></button><button class="cell" x="7"></button><button class="cell" x="8"></button><button class="cell" x="9"></button><button class="cell" x="10"></button><button class="cell" x="11"></button><button class="cell" x="12"></button><button class="cell" x="13"></button><button class="cell" x="14"></button><button class="cell" x="15"></button><button class="cell" x="16"></button>
+          </div>
+          <div Y="2" class="row">
+            <button class="cell" x="1"></button><button class="cell" x="2"></button><button class="cell" x="3"></button><button class="cell" x="4"></button><button class="cell" x="5"></button><button class="cell" x="6"></button><button class="cell" x="7"></button><button class="cell" x="8"></button><button class="cell" x="9"></button><button class="cell" x="10"></button><button class="cell" x="11"></button><button class="cell" x="12"></button><button class="cell" x="13"></button><button class="cell" x="14"></button><button class="cell" x="15"></button><button class="cell" x="16"></button>
+          </div>
+          <div Y="3" class="row">
+            <button class="cell" x="1"></button><button class="cell" x="2"></button><button class="cell" x="3"></button><button class="cell" x="4"></button><button class="cell" x="5"></button><button class="cell" x="6"></button><button class="cell" x="7"></button><button class="cell" x="8"></button><button class="cell" x="9"></button><button class="cell" x="10"></button><button class="cell" x="11"></button><button class="cell" x="12"></button><button class="cell" x="13"></button><button class="cell" x="14"></button><button class="cell" x="15"></button><button class="cell" x="16"></button>
+          </div>
+          <div Y="4" class="row">
+            <button class="cell" x="1"></button><button class="cell" x="2"></button><button class="cell" x="3"></button><button class="cell" x="4"></button><button class="cell" x="5"></button><button class="cell" x="6"></button><button class="cell" x="7"></button><button class="cell" x="8"></button><button class="cell" x="9"></button><button class="cell" x="10"></button><button class="cell" x="11"></button><button class="cell" x="12"></button><button class="cell" x="13"></button><button class="cell" x="14"></button><button class="cell" x="15"></button><button class="cell" x="16"></button>
+          </div>
+          <div Y="5" class="row">
+            <button class="cell" x="1"></button><button class="cell" x="2"></button><button class="cell" x="3"></button><button class="cell" x="4"></button><button class="cell" x="5"></button><button class="cell" x="6"></button><button class="cell" x="7"></button><button class="cell" x="8"></button><button class="cell" x="9"></button><button class="cell" x="10"></button><button class="cell" x="11"></button><button class="cell" x="12"></button><button class="cell" x="13"></button><button class="cell" x="14"></button><button class="cell" x="15"></button><button class="cell" x="16"></button>
+          </div>
+          <div Y="6" class="row">
+            <button class="cell" x="1"></button><button class="cell" x="2"></button><button class="cell" x="3"></button><button class="cell" x="4"></button><button class="cell" x="5"></button><button class="cell" x="6"></button><button class="cell" x="7"></button><button class="cell" x="8"></button><button class="cell" x="9"></button><button class="cell" x="10"></button><button class="cell" x="11"></button><button class="cell" x="12"></button><button class="cell" x="13"></button><button class="cell" x="14"></button><button class="cell" x="15"></button><button class="cell" x="16"></button>
+          </div>
+          <div Y="7" class="row">
+            <button class="cell" x="1"></button><button class="cell" x="2"></button><button class="cell" x="3"></button><button class="cell" x="4"></button><button class="cell" x="5"></button><button class="cell" x="6"></button><button class="cell" x="7"></button><button class="cell" x="8"></button><button class="cell" x="9"></button><button class="cell" x="10"></button><button class="cell" x="11"></button><button class="cell" x="12"></button><button class="cell" x="13"></button><button class="cell" x="14"></button><button class="cell" x="15"></button><button class="cell" x="16"></button>
+          </div>
+          <div Y="8" class="row">
+            <button class="cell" x="1"></button><button class="cell" x="2"></button><button class="cell" x="3"></button><button class="cell" x="4"></button><button class="cell" x="5"></button><button class="cell" x="6"></button><button class="cell" x="7"></button><button class="cell" x="8"></button><button class="cell" x="9"></button><button class="cell" x="10"></button><button class="cell" x="11"></button><button class="cell" x="12"></button><button class="cell" x="13"></button><button class="cell" x="14"></button><button class="cell" x="15"></button><button class="cell" x="16"></button>
+          </div>
+          <div Y="9" class="row">
+            <button class="cell" x="1"></button><button class="cell" x="2"></button><button class="cell" x="3"></button><button class="cell" x="4"></button><button class="cell" x="5"></button><button class="cell" x="6"></button><button class="cell" x="7"></button><button class="cell" x="8"></button><button class="cell" x="9"></button><button class="cell" x="10"></button><button class="cell" x="11"></button><button class="cell" x="12"></button><button class="cell" x="13"></button><button class="cell" x="14"></button><button class="cell" x="15"></button><button class="cell" x="16"></button>
+          </div>
+          <div Y="10" class="row">
+            <button class="cell" x="1"></button><button class="cell" x="2"></button><button class="cell" x="3"></button><button class="cell" x="4"></button><button class="cell" x="5"></button><button class="cell" x="6"></button><button class="cell" x="7"></button><button class="cell" x="8"></button><button class="cell" x="9"></button><button class="cell" x="10"></button><button class="cell" x="11"></button><button class="cell" x="12"></button><button class="cell" x="13"></button><button class="cell" x="14"></button><button class="cell" x="15"></button><button class="cell" x="16"></button>
+          </div>
+          <div Y="11" class="row">
+            <button class="cell" x="1"></button><button class="cell" x="2"></button><button class="cell" x="3"></button><button class="cell" x="4"></button><button class="cell" x="5"></button><button class="cell" x="6"></button><button class="cell" x="7"></button><button class="cell" x="8"></button><button class="cell" x="9"></button><button class="cell" x="10"></button><button class="cell" x="11"></button><button class="cell" x="12"></button><button class="cell" x="13"></button><button class="cell" x="14"></button><button class="cell" x="15"></button><button class="cell" x="16"></button>
+          </div>
+          <div Y="12" class="row">
+            <button class="cell" x="1"></button><button class="cell" x="2"></button><button class="cell" x="3"></button><button class="cell" x="4"></button><button class="cell" x="5"></button><button class="cell" x="6"></button><button class="cell" x="7"></button><button class="cell" x="8"></button><button class="cell" x="9"></button><button class="cell" x="10"></button><button class="cell" x="11"></button><button class="cell" x="12"></button><button class="cell" x="13"></button><button class="cell" x="14"></button><button class="cell" x="15"></button><button class="cell" x="16"></button>
+          </div>
+          <div Y="13" class="row">
+            <button class="cell" x="1"></button><button class="cell" x="2"></button><button class="cell" x="3"></button><button class="cell" x="4"></button><button class="cell" x="5"></button><button class="cell" x="6"></button><button class="cell" x="7"></button><button class="cell" x="8"></button><button class="cell" x="9"></button><button class="cell" x="10"></button><button class="cell" x="11"></button><button class="cell" x="12"></button><button class="cell" x="13"></button><button class="cell" x="14"></button><button class="cell" x="15"></button><button class="cell" x="16"></button>
+          </div>
+          <div Y="14" class="row">
+            <button class="cell" x="1"></button><button class="cell" x="2"></button><button class="cell" x="3"></button><button class="cell" x="4"></button><button class="cell" x="5"></button><button class="cell" x="6"></button><button class="cell" x="7"></button><button class="cell" x="8"></button><button class="cell" x="9"></button><button class="cell" x="10"></button><button class="cell" x="11"></button><button class="cell" x="12"></button><button class="cell" x="13"></button><button class="cell" x="14"></button><button class="cell" x="15"></button><button class="cell" x="16"></button>
+          </div>
+          <div Y="15" class="row">
+            <button class="cell" x="1"></button><button class="cell" x="2"></button><button class="cell" x="3"></button><button class="cell" x="4"></button><button class="cell" x="5"></button><button class="cell" x="6"></button><button class="cell" x="7"></button><button class="cell" x="8"></button><button class="cell" x="9"></button><button class="cell" x="10"></button><button class="cell" x="11"></button><button class="cell" x="12"></button><button class="cell" x="13"></button><button class="cell" x="14"></button><button class="cell" x="15"></button><button class="cell" x="16"></button>
+          </div>
+          <div Y="16" class="row">
+            <button class="cell" x="1"></button><button class="cell" x="2"></button><button class="cell" x="3"></button><button class="cell" x="4"></button><button class="cell" x="5"></button><button class="cell" x="6"></button><button class="cell" x="7"></button><button class="cell" x="8"></button><button class="cell" x="9"></button><button class="cell" x="10"></button><button class="cell" x="11"></button><button class="cell" x="12"></button><button class="cell" x="13"></button><button class="cell" x="14"></button><button class="cell" x="15"></button><button class="cell" x="16"></button>
+          </div>
+          -->
+          
+        </div>
+        <div class="mobile-score score">
+          <h3>Score</h3>
+          <div class="score-board">
+            <div class="you">
+              <h4>You</h4>
+              <p>0</p> <!--  Player's Score goes here -->
             </div>
+            <div class="them">
+              <h4>Them</h4>
+              <p>0</p> <!--  Enemy's Score goes here -->
+            </div>
+          </div>
         </div>
       </div>
-<script
-src="https://code.jquery.com/jquery-3.6.0.min.js"
-integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-crossorigin="anonymous"></script>
-<script src="network.js" ></script>
-<script src="script.js" ></script>
-<script>
-    function openNav() {
-      document.getElementById("myNav").style.height = "100%";
-      let uid = "ffffffffffffffffffffffffffffffff";
-      if(localStorage.hasOwnProperty("uid-public")){
-          uid = localStorage.getItem('uid-public');
-      }
-      document.getElementById("displaymyid").textContent="your public uuid: "+uid;
-    
-      displaystatsforid(uid);
-    }
-    
-    function closeNav() {
-        document.getElementById("myNav").style.height = "0%";
-    }
-    function inputchange(){
-        let uid = "ffffffffffffffffffffffffffffffff";
-        let e = document.getElementById("inputforid");
-        if(e.value.length==16){
-            
-        }
-
-    }
-    
-
-    </script>
+      <div class="side-bar">
+        <div class="score">
+          <h3>Score</h3>
+          <div class="score-board">
+            <div class="you">
+              <h4>You</h4>
+              <p>0</p> <!--  Player's Score goes here -->
+            </div>
+            <div class="them">
+              <h4>Them</h4>
+              <p>0</p> <!--  Enemy's Score goes here -->
+            </div>
+          </div>
+        </div>
+        <div class="heading">
+          <h1>Sweeper.io</h1>
+          <button><img src="./assets/exit.svg" alt="exit"></button>
+        </div>
+        <div class="settings">
+          <div class="game-info">
+            <p id="player-count">Player Count :</p> <!--  Players Count goes here -->
+            <p id="pid">Player Id :</p> <!--  Player's id goes here -->
+            <p id="session-id">Session Id :</p> <!--  session's id goes here -->
+          </div>
+          <div class="buttons">
+            <button class="que" id="que-button">Que</button>
+            <button class="toggle" id="toggle-button">Toggle</button>
+            <button class="leave" id="leave-button">Leave</button>
+          </div>
+          <div class="challenge">
+            <p>Challenge someone</p>
+            <div class="challenge-form">
+              <input id="challenge-id" type="text" placeholder="Enter Player Id">
+              <button id="challenge-button">Challenge</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
