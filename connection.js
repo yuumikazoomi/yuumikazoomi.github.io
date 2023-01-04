@@ -1,7 +1,7 @@
 class Connection{
     constructor(packethandlercallback){
         this.packethandlercallback = packethandlercallback;
-        this.ws = new WebSocket('wss://jdragon.digital:443');
+        this.ws = new WebSocket('wss://yordl.app:443');
         this.ws.onmessage = this.onmessage.bind(this);
         this.ws.onopen = this.onopen.bind(this);
         this.ws.onclose = this.onclose.bind(this);
