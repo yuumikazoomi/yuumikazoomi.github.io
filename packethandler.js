@@ -190,8 +190,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         }
                     }
                 }
-                document.getElementById("timer-mine").textContent = "30.00";
-                document.getElementById("timer-them").textContent = "30.00";
+                document.getElementById("timer-mine").textContent = "30.0";
+                document.getElementById("timer-them").textContent = "30.0";
                 ts = Date.now();
                 timermine = 30000;
                 timerthem = 30000;
