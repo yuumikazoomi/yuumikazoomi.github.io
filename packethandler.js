@@ -11,15 +11,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
     var timerthem = 120000;
     var myturn = 0;
     var started = 0;
+    var ts = 0;
     setInterval(() => {
         if(started){
+            var now = Date.now();
+            var elapsed = now - ts;
             if(myturn){
-                timermine -= 30;
+                timermine -= elapsed;
             }else{
-                timerthem -= 30;
+                timerthem -= elapsed;
             }
             document.getElementById("timer-mine").textContent = timermine / 1000;
             document.getElementById("timer-them").textContent = timerthem / 1000;
+            ts = now;
         }
     }, 30);
     function setminefortile(xposition, yposition, owner) {
@@ -180,6 +184,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
                 document.getElementById("timer-mine").textContent = "120.00";
                 document.getElementById("timer-them").textContent = "120.00";
+                ts = Date.now();
                 started = 1;
                 break;
             case con.identifiers.packet.kGameOver:
