@@ -15,7 +15,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         if(started){
             var now = Date.now();
             var elapsed = now - ts;
-            turntimer -=elapsed;
+            turntimer -=elapsed/1000;
             fixedtimer = turntimer.toFixed(1);
             document.getElementById("timer-turn").textContent = fixedtimer;
             ts = now;
