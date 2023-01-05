@@ -1,4 +1,5 @@
 var con = null;
+
 window.addEventListener('DOMContentLoaded', (event) => {
     // let con = null;
     con = new Connection(packethandler);
@@ -6,6 +7,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
     var lasttile = null;
     generateboard();
     var minecount = 0;
+    var timermine = 120000;
+    var timerthem = 120000;
+    var myturn = 0;
+    var started = 0;
+    setInterval(() => {
+        if(started){
+            if(myturn){
+                timermine -= 30;
+            }else{
+                timerthem -= 30;
+            }
+        }
+    }, 30);
     function setminefortile(xposition, yposition, owner) {
         ++minecount;
         let myingamepid = localStorage.getItem('ingamepid');
@@ -162,6 +176,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         }
                     }
                 }
+                document.getElementById("timer-mine").textContent = "120s";
+                document.getElementById("timer-them").textContent = "120s";
+                started = 1;
                 break;
             case con.identifiers.packet.kGameOver:
                 let myingamepid = localStorage.getItem('ingamepid');
@@ -187,7 +204,30 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     }
 
                 });
-                }else{
+            }else if(packet.timeout == myingamepid){
+                toastr.error('YOU LOSE - TIMER OUT!',
+                {
+                    closeButton: true,
+                    debug: false,
+                    newestOnTop: false,
+                    progressBar: true,
+                    positionClass: "toast-bottom-right",
+                    preventDuplicates: false,
+                    onclick: null,
+                    showDuration: "5000",
+                    hideDuration: "1000",
+                    timeOut: "5000",
+                    extendedTimeOut: "1000",
+                    showEasing: "swing",
+                    hideEasing: "linear",
+                    showMethod: "fadeIn",
+                    hideMethod: "fadeOut",
+                    onShown: function (toast) {
+                    }
+
+                });
+            }
+                else{
                     toastr.error('AWE YOU LOSt!',
                 {
                     closeButton: true,
@@ -227,6 +267,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 let ingameid = localStorage.getItem('ingamepid');
 
                 if (packet.playerturn == ingameid) {
+                    myturn = 1;
                     document.getElementById('player-turn').innerText = 'You';
                     let rows = document.querySelectorAll('.row');
                     rows.forEach(e => {
@@ -241,6 +282,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     })
                     
                 } else {
+                    myturn = 0;
                     document.getElementById('player-turn').innerText = 'Them';
                     let rows = document.querySelectorAll('.row');
                     rows.forEach(e => {
@@ -254,7 +296,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         })
                     })
                 }
-
+                document.getElementById("timer-mine").textContent = timermine / 1000;
+                document.getElementById("timer-them").textContent = timerthem / 1000;
             }
                 break;
             case con.identifiers.packet.kChallenge: {
