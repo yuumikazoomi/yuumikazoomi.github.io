@@ -247,7 +247,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 break;
             case con.identifiers.packet.kTurn: {
                 let ingameid = localStorage.getItem('ingamepid');
-
+                turntimer = 5000;
                 if (packet.playerturn == ingameid) {
                     myturn = 1;
                     document.getElementById('player-turn').innerText = 'You';
