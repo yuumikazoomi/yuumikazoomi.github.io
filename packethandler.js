@@ -18,8 +18,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
             var elapsed = now - ts;
             if(myturn){
                 timermine -= elapsed;
+            
             }else{
                 timerthem -= elapsed;
+            }
+            if(timermine <=0 || timerthem <=0){
+                started = 0;
             }
             document.getElementById("timer-mine").textContent = timermine / 1000;
             document.getElementById("timer-them").textContent = timerthem / 1000;
@@ -185,9 +189,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 document.getElementById("timer-mine").textContent = "120.00";
                 document.getElementById("timer-them").textContent = "120.00";
                 ts = Date.now();
+                timermine = 120000;
+                timerthem = 120000;
                 started = 1;
                 break;
             case con.identifiers.packet.kGameOver:
+                started = 0;
                 let myingamepid = localStorage.getItem('ingamepid');
                 if(packet.winner==myingamepid){
                     toastr.success('YOU WON!',
