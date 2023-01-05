@@ -18,6 +18,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }else{
                 timerthem -= 30;
             }
+            document.getElementById("timer-mine").textContent = timermine / 1000;
+            document.getElementById("timer-them").textContent = timerthem / 1000;
         }
     }, 30);
     function setminefortile(xposition, yposition, owner) {
@@ -296,8 +298,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         })
                     })
                 }
-                document.getElementById("timer-mine").textContent = timermine / 1000;
-                document.getElementById("timer-them").textContent = timerthem / 1000;
+
             }
                 break;
             case con.identifiers.packet.kChallenge: {
