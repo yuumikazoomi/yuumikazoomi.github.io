@@ -7,8 +7,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
     var lasttile = null;
     generateboard();
     var minecount = 0;
-    var timermine = 120000;
-    var timerthem = 120000;
+    var timermine = 30000;
+    var timerthem = 30000;
     var myturn = 0;
     var started = 0;
     var ts = 0;
@@ -25,8 +25,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
             if(timermine <=0 || timerthem <=0){
                 started = 0;
             }
-            document.getElementById("timer-mine").textContent = timermine / 1000;
-            document.getElementById("timer-them").textContent = timerthem / 1000;
+            let fixedmine = timermine/1000;
+            fixedmine = fixedmine.toFixed(1);
+            let fixedthem = timerthem/1000;
+            fixedthem = fixedthem.toFixed(1);
+            document.getElementById("timer-mine").textContent = fixedmine;
+            document.getElementById("timer-them").textContent = fixedthem;
             ts = now;
         }
     }, 30);
@@ -186,11 +190,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         }
                     }
                 }
-                document.getElementById("timer-mine").textContent = "120.00";
-                document.getElementById("timer-them").textContent = "120.00";
+                document.getElementById("timer-mine").textContent = "30.00";
+                document.getElementById("timer-them").textContent = "30.00";
                 ts = Date.now();
-                timermine = 120000;
-                timerthem = 120000;
+                timermine = 30000;
+                timerthem = 30000;
                 started = 1;
                 break;
             case con.identifiers.packet.kGameOver:
