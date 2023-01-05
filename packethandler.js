@@ -290,7 +290,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 break;
             case 50: {
                 packet.Position.forEach(element => {
-                    game.tiles[element.XPosition][element.YPosition].getelement().classList.add('not-empty');
+                    game.tiles[element.XPosition][element.YPosition].getelement().classList.add('last-move');
                 });
             }
                 break;
