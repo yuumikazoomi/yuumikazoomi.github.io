@@ -1,6 +1,7 @@
+var con = null;
 window.addEventListener('DOMContentLoaded', (event) => {
     // let con = null;
-    let con = new Connection(packethandler);
+    con = new Connection(packethandler);
     var game = null;
     var lasttile = null;
     generateboard();
