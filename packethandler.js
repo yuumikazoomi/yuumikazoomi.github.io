@@ -7,8 +7,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     var lasttile = null;
     generateboard();
     var minecount = 0;
-    var timermine = 30000;
-    var timerthem = 30000;
+    var turntimer = 5000;
     var myturn = 0;
     var started = 0;
     var ts = 0;
@@ -16,21 +15,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         if(started){
             var now = Date.now();
             var elapsed = now - ts;
-            if(myturn){
-                timermine -= elapsed;
-            
-            }else{
-                timerthem -= elapsed;
-            }
-            if(timermine <=0 || timerthem <=0){
-                started = 0;
-            }
-            let fixedmine = timermine/1000;
-            fixedmine = fixedmine.toFixed(1);
-            let fixedthem = timerthem/1000;
-            fixedthem = fixedthem.toFixed(1);
-            document.getElementById("timer-mine").textContent = fixedmine;
-            document.getElementById("timer-them").textContent = fixedthem;
+            turntimer -=elapsed;
+            fixedtimer = turntimer.toFixed(1);
+            document.getElementById("timer-turn").textContent = fixedtimer;
             ts = now;
         }
     }, 30);
@@ -115,6 +102,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             case con.identifiers.packet.kMove: {
                 
                 if (packet.ismine) {
+                    turntimer+=1000;
                     setminefortile(packet.xposition, packet.yposition, packet.player);
 
                 } else {
@@ -190,11 +178,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         }
                     }
                 }
-                document.getElementById("timer-mine").textContent = "30.0";
-                document.getElementById("timer-them").textContent = "30.0";
+                document.getElementById("timer-turn").textContent = "5.0";
                 ts = Date.now();
-                timermine = 30000;
-                timerthem = 30000;
+                turntimer;
                 started = 1;
                 break;
             case con.identifiers.packet.kGameOver:
@@ -202,28 +188,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 let myingamepid = localStorage.getItem('ingamepid');
                 if(packet.winner==myingamepid ){
                     toastr.success('YOU WON!',
-                {
-                    closeButton: true,
-                    debug: false,
-                    newestOnTop: false,
-                    progressBar: true,
-                    positionClass: "toast-bottom-right",
-                    preventDuplicates: false,
-                    onclick: null,
-                    showDuration: "5000",
-                    hideDuration: "1000",
-                    timeOut: "5000",
-                    extendedTimeOut: "1000",
-                    showEasing: "swing",
-                    hideEasing: "linear",
-                    showMethod: "fadeIn",
-                    hideMethod: "fadeOut",
-                    onShown: function (toast) {
-                    }
-
-                });
-            }if(packet.timeout != myingamepid){
-                toastr.success('YOU WON!',
                 {
                     closeButton: true,
                     debug: false,
