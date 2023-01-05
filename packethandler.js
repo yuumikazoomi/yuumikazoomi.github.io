@@ -176,8 +176,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         }
                     }
                 }
-                document.getElementById("timer-mine").textContent = "120s";
-                document.getElementById("timer-them").textContent = "120s";
+                document.getElementById("timer-mine").textContent = "120:00";
+                document.getElementById("timer-them").textContent = "120:00";
                 started = 1;
                 break;
             case con.identifiers.packet.kGameOver:
