@@ -200,7 +200,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             case con.identifiers.packet.kGameOver:
                 started = 0;
                 let myingamepid = localStorage.getItem('ingamepid');
-                if(packet.winner==myingamepid){
+                if(packet.winner==myingamepid || packet.timeout != myingamepid){
                     toastr.success('YOU WON!',
                 {
                     closeButton: true,
@@ -222,7 +222,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     }
 
                 });
-            }else if(packet.timeout == myingamepid){
+            }if(packet.timeout == myingamepid){
                 toastr.error('YOU LOSE - TIMER OUT!',
                 {
                     closeButton: true,
