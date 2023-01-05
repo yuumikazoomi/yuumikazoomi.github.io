@@ -43,6 +43,7 @@ class PacketIdentifiers{
         this.kToggleRequests = 17;
         this.kChallenge = 18;
         this.kChallengeAccept = 19;
+        this.kQueQue = 20;
     }
 }
 class IdentifierConstants{

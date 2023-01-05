@@ -328,7 +328,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         con.send(packet);
     }
     function queclickevent(e) {
-        con.send({ pid: con.identifiers.packet.kQueLeave });
+        con.send({ pid: con.identifiers.packet.kQueQue });
         document.getElementById('que-button').innerText = 'In Que';
         document.getElementById('que-button').disabled = true;
     }
