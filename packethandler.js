@@ -7,7 +7,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     var lasttile = null;
     generateboard();
     var minecount = 0;
-    var turntimer = 6000;
+    var turntimer = 10000;
     var myturn = 0;
     var started = 0;
     var ts = 0;
@@ -25,7 +25,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             //console.log(turntimer);
             //fixedtimer = turntimer.toFixed(1);
             
-            //document.getElementById("timer-turn").textContent = fixedtimer;
+            document.getElementById("timer-turn").textContent = fixedtimer;
             ts = now;
         }
     }, 30);
@@ -188,7 +188,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
                 document.getElementById("timer-turn").textContent = "5.0";
                 ts = Date.now();
-                turntimer;
+                turntimer = 10000;
                 started = 1;
                 break;
             case con.identifiers.packet.kGameOver:
