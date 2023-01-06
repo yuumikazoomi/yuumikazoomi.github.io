@@ -7,7 +7,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     var lasttile = null;
     generateboard();
     var minecount = 0;
-    var turntimer = 5000;
+    var turntimer = 6000;
     var myturn = 0;
     var started = 0;
     var ts = 0;
@@ -22,7 +22,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
             var fixedtimer = turntimer/1000;
             fixedtimer = fixedtimer.toFixed(1);
-            console.log(turntimer);
+            //console.log(turntimer);
             //fixedtimer = turntimer.toFixed(1);
             
             document.getElementById("timer-turn").textContent = fixedtimer;
