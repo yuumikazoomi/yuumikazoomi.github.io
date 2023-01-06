@@ -193,6 +193,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 break;
             case con.identifiers.packet.kGameOver:
                 started = 0;
+                turntimer = 10000;
                 let myingamepid = localStorage.getItem('ingamepid');
                 if(packet.winner==myingamepid ){
                     toastr.success('YOU WON!',
@@ -373,6 +374,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
     function leaveclickevent(e) {
         con.send({ pid: con.identifiers.packet.kQueLeave });
         generateboard();
+        turntimer = 0;
+        started = 0;
         document.getElementById('que-button').innerText = 'Que';
     }
     function challengeclickevent(e) {
