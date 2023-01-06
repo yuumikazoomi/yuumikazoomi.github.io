@@ -25,7 +25,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             //console.log(turntimer);
             //fixedtimer = turntimer.toFixed(1);
             
-            document.getElementById("timer-turn").textContent = fixedtimer;
+            //document.getElementById("timer-turn").textContent = fixedtimer;
             ts = now;
         }
     }, 30);
