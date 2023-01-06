@@ -11,6 +11,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     var myturn = 0;
     var started = 0;
     var ts = 0;
+    var lastplayerturn  = null;
     setInterval(() => {
         if(started){
             var now = Date.now();
@@ -253,9 +254,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
                 break;
             case con.identifiers.packet.kTurn: {
+
                 let ingameid = localStorage.getItem('ingamepid');
-                turntimer = 5000;
+                turntimer = packet.timestamp;
+                
                 if (packet.playerturn == ingameid) {
+                    lastplayerturn = packet.playerturn;
                     myturn = 1;
                     document.getElementById('player-turn').innerText = 'You';
                     let rows = document.querySelectorAll('.row');
