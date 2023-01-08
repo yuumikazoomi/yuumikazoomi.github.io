@@ -1,7 +1,7 @@
 var con = null;
 
 window.addEventListener('DOMContentLoaded', (event) => {
-    var audio = new Audio('bubble.wav');
+    var audio = new Audio('Bubble.wav');
     // let con = null;
     con = new Connection(packethandler);
     var game = null;
