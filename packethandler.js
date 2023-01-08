@@ -9,7 +9,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
     generateboard();
     var minecount = 0;
     var turntimer = 10000;
-    var myturn = 0;
     var started = 0;
     var ts = 0;
     var lastplayerturn  = null;
@@ -259,11 +258,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                 let ingameid = localStorage.getItem('ingamepid');
                 turntimer = packet.timestamp;
-                
-                if (packet.playerturn == ingameid) {
-                    
+                if(lastplayerturn!=ingameid&&packet.playerturn==ingameid){
                     audio.play();
-                    lastplayerturn = packet.playerturn;
+                }
+                lastplayerturn = packet.playerturn;
+                if (packet.playerturn == ingameid) {
+                
+                    
+                    
                     myturn = 1;
                     document.getElementById('player-turn').innerText = 'You';
                     let rows = document.querySelectorAll('.row');
