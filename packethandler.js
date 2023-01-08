@@ -47,10 +47,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             })
             img.setAttribute('src', 'assets/flagblack.png');
         }
-        if (minecount < 9)
-            document.getElementById('mine-count').innerText = '0' + minecount;
-        else
-            document.getElementById('mine-count').innerText = minecount;
+        document.getElementById('mine-count').innerText = minecount + "/50";
+            
         let tile = game.tiles[xposition][yposition];
         tile.getelement().classList.add('not-empty');
         //  tile.getelement().setAttribute('style','background-image: url( "assets/flagblue.png" );');
@@ -190,6 +188,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 ts = Date.now();
                 turntimer = 10000;
                 started = 1;
+                minecount = 0;
+                document.getElementById('mine-count').innerText = minecount + "/50";
                 break;
             case con.identifiers.packet.kGameOver:
                 started = 0;
