@@ -1,6 +1,7 @@
 var con = null;
 
 window.addEventListener('DOMContentLoaded', (event) => {
+    var audio = new Audio('bubble.wav');
     // let con = null;
     con = new Connection(packethandler);
     var game = null;
@@ -260,6 +261,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 turntimer = packet.timestamp;
                 
                 if (packet.playerturn == ingameid) {
+                    
+                    audio.play();
                     lastplayerturn = packet.playerturn;
                     myturn = 1;
                     document.getElementById('player-turn').innerText = 'You';
