@@ -8,7 +8,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     var lasttile = null;
     generateboard();
     var minecount = 0;
-    var turntimer = 10000;
+    var turntimer = 15000;
     var started = 0;
     var ts = 0;
     var lastplayerturn  = null;
@@ -186,14 +186,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
                 document.getElementById("timer-turn").textContent = "5.0";
                 ts = Date.now();
-                turntimer = 10000;
+                turntimer = 15000;
                 started = 1;
                 minecount = 0;
                 document.getElementById('mine-count').innerText = minecount + "/50";
                 break;
             case con.identifiers.packet.kGameOver:
                 started = 0;
-                turntimer = 10000;
+                turntimer = 15000;
                 let myingamepid = localStorage.getItem('ingamepid');
                 if(packet.winner==myingamepid ){
                     toastr.success('YOU WON!',
