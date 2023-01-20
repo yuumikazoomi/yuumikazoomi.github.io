@@ -251,7 +251,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 document.getElementById('que-button').innerText = 'Que';
                 document.getElementById('que-button').disabled = false;
                 //generateboard(); keep the board state after game is over
-                
+                started = 0;
             }
                 break;
             case con.identifiers.packet.kTurn: {
