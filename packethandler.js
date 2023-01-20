@@ -250,6 +250,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 document.getElementById('session-id').innerText = 'Session Id: ';
                 document.getElementById('que-button').innerText = 'Que';
                 document.getElementById('que-button').disabled = false;
+                document.getElementById('player-turn').innerText = 'Game Over';
                 //generateboard(); keep the board state after game is over
                 started = 0;
             }
