@@ -44,6 +44,8 @@ class PacketIdentifiers{
         this.kChallenge = 18;
         this.kChallengeAccept = 19;
         this.kQueQue = 20;
+        this.kChatMsg = 21;
+        this.kGameAlert = 22;
     }
 }
 class IdentifierConstants{

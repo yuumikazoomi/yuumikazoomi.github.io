@@ -335,6 +335,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     game.tiles[element.XPosition][element.YPosition].getelement().classList.add('last-move');
                 });
             }
+            break;
+            case con.identifiers.packet.kChatMsg:{
+
+            }
+            break;
+            case con.identifiers.packet.kGameAlert:{
+                console.log("here");
+                if(packet.alert){
+                    alert(packet.alert);
+                }
+            }
                 break;
         }
     }
