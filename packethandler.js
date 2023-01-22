@@ -172,8 +172,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 //document.getElementById('score-you').innerText = 0;
                 //document.getElementById('score-them').innerText = 0;
                 generateboard();
-                document.querySelectorAll('.them p').innerText = 0;
-                document.querySelectorAll('.you p').innerText = 0;
+                document.getElementById("score-me").innerText = 0;
+                document.getElementById("score-them").innerText = 0;
                 
                 if (packet.tiles) {
                     for (let e of packet.tiles) {
