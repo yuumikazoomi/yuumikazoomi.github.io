@@ -162,8 +162,7 @@ body {
   font-weight: 700;
 }
 .game-view .grid .row .cell:hover {
-  background-color: #d06338;
-  filter: none;
+  background-color: #a7502d;
   cursor: pointer;
 }
 .cell img {
